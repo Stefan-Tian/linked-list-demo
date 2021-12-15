@@ -1,0 +1,12 @@
+@import "./linked-list.css";
+
+html {
+  @apply bg-slate-100;
+  @apply m-auto;
+  height: 100%;
+}
+
+body,
+#root {
+  height: 100%;
+}

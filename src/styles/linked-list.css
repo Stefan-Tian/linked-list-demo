@@ -1,0 +1,64 @@
+.new-node {
+  position: absolute;
+  margin: auto;
+  top: 0;
+}
+
+.node {
+  position: relative;
+}
+
+.node:first-of-type::before,
+.node:last-of-type::after {
+  display: none;
+}
+
+.node:first-of-type {
+  margin-left: 0;
+}
+
+.node:last-of-type {
+  margin-right: 0;
+}
+
+.node::before,
+.next-pointer::after,
+.prev-pointer::before,
+.node::after {
+  position: absolute;
+}
+
+.node::before,
+.prev-pointer::before {
+  content: "\2190";
+  left: -45%;
+}
+
+.node::after,
+.next-pointer::after {
+  content: "\2192";
+  @apply text-blue-500;
+  right: -45%;
+}
+
+.node:nth-of-type(even)::before,
+.node:nth-of-type(even)::after {
+  top: 40px;
+}
+
+.next-pointer:last-of-type::after,
+.node:nth-of-type(odd)::before,
+.node:nth-of-type(odd)::after {
+  top: 15px;
+}
+
+.next-pointer:last-of-type::after {
+  display: inline-block;
+  @apply text-indigo-600;
+}
+
+.prev-pointer:first-of-type::before {
+  display: inline-block;
+  color: @apply text-indigo-400;
+  top: 50px;
+}
