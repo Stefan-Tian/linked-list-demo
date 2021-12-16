@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import useAnimationProcess from '../hooks/useAnimationProcess';
 import DLLNode from './DLLNode';
 
@@ -12,15 +13,15 @@ enum AnimationStep {
   SetNextPointerOfNewNodeToNextNode = 6,
 }
 
-const animationDurations = [500, 600, 600, 600, 600, 3000];
+const animationDurations = [500, 1000, 600, 600, 600, 600, 3000];
 
 const instructionsMap: Record<number, string> = {
   [AnimationStep.CreateNode]: 'Create a new node.',
   [AnimationStep.TraverseToIndexToInsert]: 'Traverse to input index - 1 node',
   [AnimationStep.SetNextPointerOfPrevNodeToNewNode]:
-    'Update next pointer of the previous node to new node',
+    'Update next pointer of previous node to new node',
   [AnimationStep.SetPrevPointerOfNextNodeToNewNode]:
-    'Update prev pointer of the next node to new node',
+    'Update prev pointer of next node to new node',
   [AnimationStep.SetPrevPointerOfNewNodeToPrevNode]:
     'Update prev pointer of new node to previous node',
   [AnimationStep.SetNextPointerOfNewNodeToNextNode]:
@@ -50,25 +51,42 @@ const computeCreatedNodeClass = (step: number) => {
   return classes;
 };
 
-const list = [3, 4];
+const list = [5, 6];
 const DLLInsert = () => {
   const { animationStep, startAnimationProcess, setAnimationStep } =
     useAnimationProcess(animationDurations);
+  const [currNode, setCurrNode] = useState(-1);
 
   const handleClickNextStep = () => {
     if (animationStep === AnimationStep.SetNextPointerOfNewNodeToNextNode) {
       setAnimationStep(AnimationStep.NotStarted);
+      setCurrNode(-1);
     } else {
       setAnimationStep((prevStep) => prevStep + 1);
     }
   };
+
+  useEffect(() => {
+    if (animationStep === AnimationStep.TraverseToIndexToInsert) {
+      let interval = setInterval(() => {
+        setCurrNode((prevNode) => {
+          if (prevNode === 3) {
+            clearInterval(interval);
+            return prevNode;
+          }
+
+          return prevNode + 1;
+        });
+      }, 400);
+    }
+  }, [animationStep]);
 
   return (
     <div>
       <div className="flex items-center justify-center">
         <ol className="mr-16 text-left">
           <h1 className="text-blue-800 text-2xl mb-6 font-bold pl-2">
-            INSERT - index 1, value 2
+            INSERT - index 3, value 4
           </h1>
           {instructions.map((instruction, idx) => (
             <li
@@ -97,13 +115,13 @@ const DLLInsert = () => {
             )}`}
             style={{
               ...(animationStep >= AnimationStep.MoveNodeToPosition && {
-                transform: `translate(160px, 118px)`,
+                transform: `translate(${160 * 3}px, 118px)`,
               }),
             }}
           >
             <DLLNode
               isNew={true}
-              number={2}
+              number={4}
               showPrevPointer={
                 animationStep >= AnimationStep.SetPrevPointerOfNewNodeToPrevNode
               }
@@ -113,9 +131,11 @@ const DLLInsert = () => {
             />
           </div>
           <div className="flex items-center justify-center mb-12">
+            <DLLNode number={1} isHead={true} />
+            <DLLNode number={2} forceShow={currNode === 2} />
             <DLLNode
-              number={1}
-              isHead={true}
+              number={3}
+              forceShow={currNode === 3}
               hideNextPointer={
                 animationStep === AnimationStep.MoveNodeToPosition
               }
@@ -133,6 +153,8 @@ const DLLInsert = () => {
                   key={num}
                   number={num}
                   isHead={false}
+                  isUnknown={idx === 0}
+                  forceShow={idx === 0 && currNode === 3}
                   hidePrevPointer={
                     idx === 0 &&
                     (animationStep === AnimationStep.MoveNodeToPosition ||

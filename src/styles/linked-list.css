@@ -6,6 +6,16 @@
 
 .node {
   position: relative;
+  opacity: 0.2;
+}
+
+.node:first-of-type.opaque,
+.node:last-of-type.opaque {
+  opacity: 0.2;
+}
+
+.node.show {
+  opacity: 1;
 }
 
 .hide-next-pointer::after,
@@ -17,10 +27,12 @@
 
 .node:first-of-type {
   margin-left: 0;
+  opacity: 1;
 }
 
 .node:last-of-type {
   margin-right: 0;
+  opacity: 1;
 }
 
 .node::before,

@@ -11,6 +11,8 @@ interface Props {
   showNextPointer?: boolean;
   hideNextPointer?: boolean;
   hidePrevPointer?: boolean;
+  isUnknown?: boolean;
+  forceShow?: boolean;
 }
 
 const activeText = 'font-normal text-blue-600';
@@ -28,15 +30,19 @@ const DLLNode = ({
   showNextPointer,
   hideNextPointer,
   hidePrevPointer,
+  isUnknown,
+  forceShow,
 }: Props) => {
   const nodeClass = () => {
     let classes =
-      'node text-xl font-bold h-24 w-24 shadow-md rounded-md bg-white flex flex-col items-center justify-center';
+      'node text-xl font-bold h-24 w-24 shadow-md rounded-md bg-white flex flex-col items-center justify-center transition-all';
     if (!isNew) classes += ' mx-8';
     if (showTailNextPointer || showNextPointer) classes += ' next-pointer';
     if (showHeadPrevPointer || showPrevPointer) classes += ' prev-pointer';
     if (hideNextPointer) classes += ' hide-next-pointer';
     if (hidePrevPointer) classes += ' hide-prev-pointer';
+    if (isUnknown && !forceShow) classes += ' opaque';
+    if (forceShow) classes += ' show';
     return classes;
   };
 
@@ -63,6 +69,8 @@ DLLNode.defaultProps = {
   showNextPointer: false,
   hideNextPointer: false,
   hidePrevPointer: false,
+  isUnknown: false,
+  forceShow: false,
 };
 
 export default DLLNode;
