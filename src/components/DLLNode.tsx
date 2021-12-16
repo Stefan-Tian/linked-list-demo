@@ -7,10 +7,14 @@ interface Props {
   isOldTail?: boolean;
   showTailNextPointer?: boolean;
   showPrevPointer?: boolean;
+  showHeadPrevPointer?: boolean;
+  showNextPointer?: boolean;
+  hideNextPointer?: boolean;
+  hidePrevPointer?: boolean;
 }
 
-const activeText = "font-normal text-blue-600";
-const obsoleteText = "font-normal text-gray-400";
+const activeText = 'font-normal text-blue-600';
+const obsoleteText = 'font-normal text-gray-400';
 const DLLNode = ({
   isNew,
   number,
@@ -20,13 +24,19 @@ const DLLNode = ({
   isOldTail,
   showTailNextPointer,
   showPrevPointer,
+  showHeadPrevPointer,
+  showNextPointer,
+  hideNextPointer,
+  hidePrevPointer,
 }: Props) => {
   const nodeClass = () => {
     let classes =
-      "node text-xl font-bold h-24 w-24 shadow-md rounded-md bg-white flex flex-col items-center justify-center";
-    if (!isNew) classes += " mx-8";
-    if (showTailNextPointer) classes += " next-pointer";
-    if (showPrevPointer) classes += " prev-pointer";
+      'node text-xl font-bold h-24 w-24 shadow-md rounded-md bg-white flex flex-col items-center justify-center';
+    if (!isNew) classes += ' mx-8';
+    if (showTailNextPointer || showNextPointer) classes += ' next-pointer';
+    if (showHeadPrevPointer || showPrevPointer) classes += ' prev-pointer';
+    if (hideNextPointer) classes += ' hide-next-pointer';
+    if (hidePrevPointer) classes += ' hide-prev-pointer';
     return classes;
   };
 
@@ -49,6 +59,10 @@ DLLNode.defaultProps = {
   isOldTail: false,
   showTailNextPointer: false,
   showPrevPointer: false,
+  showHeadPrevPointer: false,
+  showNextPointer: false,
+  hideNextPointer: false,
+  hidePrevPointer: false,
 };
 
 export default DLLNode;

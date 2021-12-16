@@ -8,6 +8,8 @@
   position: relative;
 }
 
+.hide-next-pointer::after,
+.hide-prev-pointer::before,
 .node:first-of-type::before,
 .node:last-of-type::after {
   display: none;
@@ -30,13 +32,13 @@
 
 .node::before,
 .prev-pointer::before {
-  content: "\2190";
+  content: '\2190';
   left: -45%;
 }
 
 .node::after,
 .next-pointer::after {
-  content: "\2192";
+  content: '\2192';
   @apply text-blue-500;
   right: -45%;
 }
@@ -61,4 +63,8 @@
   display: inline-block;
   color: @apply text-indigo-400;
   top: 50px;
+}
+
+.hide-prev-pointer.prev-pointer::before {
+  display: none;
 }
