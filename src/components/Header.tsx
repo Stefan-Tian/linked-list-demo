@@ -1,5 +1,7 @@
+import { NavLink } from 'react-router-dom';
+
 const itemClasses =
-  "block px-4 py-2 mt-2 text-lg font-semibold text-gray-300 bg-transparent rounded-lg hover:text-gray-900 focus:text-blue-900 focus:outline-none focus:shadow-outline";
+  'block px-4 py-2 mt-2 text-lg font-semibold bg-transparent rounded-lg hover:text-gray-900 focus:text-blue-900 focus:outline-none focus:shadow-outline ';
 
 const Header = () => {
   return (
@@ -8,24 +10,54 @@ const Header = () => {
         <div className="px-4 py-4 text-2xl font-bold mr-16">
           DOUBLY LINKED LIST
         </div>
-        <a className={itemClasses} href="#">
+        <NavLink
+          className={({ isActive }) =>
+            itemClasses + (isActive ? 'text-blue-900' : 'text-gray-500')
+          }
+          to="/push"
+        >
           PUSH
-        </a>
-        <a className={itemClasses} href="#">
+        </NavLink>
+        <NavLink
+          className={({ isActive }) =>
+            itemClasses + (isActive ? 'text-blue-900' : 'text-gray-500')
+          }
+          to="/unshift"
+        >
           UNSHIFT
-        </a>
-        <a className={itemClasses} href="#">
+        </NavLink>
+        <NavLink
+          className={({ isActive }) =>
+            itemClasses + (isActive ? 'text-blue-900' : 'text-gray-500')
+          }
+          to="/insert"
+        >
           INSERT
-        </a>
-        <a className={itemClasses} href="#">
+        </NavLink>
+        <NavLink
+          className={({ isActive }) =>
+            itemClasses + (isActive ? 'text-blue-900' : 'text-gray-500')
+          }
+          to="/pop"
+        >
           POP
-        </a>
-        <a className={itemClasses} href="#">
+        </NavLink>
+        <NavLink
+          className={({ isActive }) =>
+            itemClasses + (isActive ? 'text-blue-900' : 'text-gray-500')
+          }
+          to="/shift"
+        >
           SHIFT
-        </a>
-        <a className={itemClasses} href="#">
+        </NavLink>
+        <NavLink
+          className={({ isActive }) =>
+            itemClasses + (isActive ? 'text-blue-900' : 'text-gray-500')
+          }
+          to="/delete"
+        >
           DELETE
-        </a>
+        </NavLink>
       </nav>
     </div>
   );
