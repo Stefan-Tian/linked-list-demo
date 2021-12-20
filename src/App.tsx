@@ -1,14 +1,24 @@
-import { Routes, Route } from "react-router-dom";
-import Header from "./components/Header";
-import DLLPush from "./components/DLLPush";
-import DLLInsert from "./components/DLLInsert";
-import DLLUnshift from "./components/DLLUnshift";
-import DLLPop from "./components/DLLPop";
-import DLLShift from "./components/DLLShift";
-import DLLDelete from "./components/DLLDelete";
-import "./styles/tailwind.css";
+import { useEffect } from 'react';
+import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
+import Header from './components/Header';
+import DLLPush from './components/DLLPush';
+import DLLInsert from './components/DLLInsert';
+import DLLUnshift from './components/DLLUnshift';
+import DLLPop from './components/DLLPop';
+import DLLShift from './components/DLLShift';
+import DLLDelete from './components/DLLDelete';
+import './styles/tailwind.css';
 
 function App() {
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.pathname === '/') {
+      navigate('/push');
+    }
+  }, [navigate, location]);
+
   return (
     <div>
       <Header />
