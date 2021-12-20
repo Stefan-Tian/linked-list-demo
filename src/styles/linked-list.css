@@ -44,13 +44,13 @@
 
 .node::before,
 .prev-pointer::before {
-  content: '\2190';
+  content: "\2190";
   left: -45%;
 }
 
 .node::after,
 .next-pointer::after {
-  content: '\2192';
+  content: "\2192";
   @apply text-blue-500;
   right: -45%;
 }
@@ -79,4 +79,8 @@
 
 .hide-prev-pointer.prev-pointer::before {
   display: none;
+}
+
+.adjust-next:nth-of-type(even)::after {
+  top: 20px;
 }
