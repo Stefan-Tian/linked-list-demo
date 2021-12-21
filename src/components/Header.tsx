@@ -58,6 +58,14 @@ const Header = () => {
         >
           DELETE
         </NavLink>
+        <NavLink
+          className={({ isActive }) =>
+            itemClasses + (isActive ? 'text-blue-900' : 'text-gray-500')
+          }
+          to="/lfu-cache"
+        >
+          LFU Cache
+        </NavLink>
       </nav>
     </div>
   );

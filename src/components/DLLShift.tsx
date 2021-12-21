@@ -38,7 +38,7 @@ const DLLShift = () => {
     <div>
       <div className="flex items-center justify-center">
         <ol className="mr-16 text-left">
-          <h1 className="text-blue-800 text-2xl mb-6 font-bold pl-2">SHIFT</h1>
+          <h1 className="text-blue-800 text-2xl mb-6 font-bold">SHIFT</h1>
           {instructions.map((instruction, idx) => (
             <li
               key={instruction}

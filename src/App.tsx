@@ -7,6 +7,7 @@ import DLLUnshift from './components/DLLUnshift';
 import DLLPop from './components/DLLPop';
 import DLLShift from './components/DLLShift';
 import DLLDelete from './components/DLLDelete';
+import LFUCache from './components/LFUCache';
 import './styles/tailwind.css';
 
 function App() {
@@ -29,6 +30,7 @@ function App() {
         <Route path="/pop" element={<DLLPop />} />
         <Route path="/shift" element={<DLLShift />} />
         <Route path="/delete" element={<DLLDelete />} />
+        <Route path="/lfu-cache" element={<LFUCache />} />
       </Routes>
     </div>
   );
