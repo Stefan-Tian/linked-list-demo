@@ -1,5 +1,5 @@
-import useAnimationProcess from "../hooks/useAnimationProcess";
-import DLLNode from "./DLLNode";
+import useAnimationProcess from '../hooks/useAnimationProcess';
+import DLLNode from './DLLNode';
 
 enum AnimationStep {
   NotStarted = -1,
@@ -13,32 +13,32 @@ enum AnimationStep {
 const animationDurations = [500, 600, 600, 600, 3000];
 
 const instructionsMap: Record<number, string> = {
-  [AnimationStep.CreateNode]: "Create a new node.",
+  [AnimationStep.CreateNode]: 'Create a new node.',
   [AnimationStep.ConnectOldTailToNew]:
-    "Set the next pointer of tail to new node.",
-  [AnimationStep.UpdateTail]: "Update tail to be the new node.",
+    'Set the next pointer of tail to new node.',
+  [AnimationStep.UpdateTail]: 'Update tail to be the new node.',
   [AnimationStep.ConnectNewTailToOld]:
-    "Set the previous pointer of new node to old tail.",
+    'Set the previous pointer of new node to old tail.',
 };
 
 const instructions = Object.values(instructionsMap);
 
 const computePlaceholderNodeClass = (step: number) => {
   if (step === AnimationStep.NotStarted) {
-    return "";
+    return '';
   }
 
-  return "invisible";
+  return 'invisible';
 };
 
 const computeCreatedNodeClass = (step: number) => {
-  let classes = "";
+  let classes = '';
   if (step === AnimationStep.CreateNode) return classes;
 
   if (step === AnimationStep.NotStarted) {
-    classes += " hidden";
+    classes += ' hidden';
   } else {
-    classes += "new-node transition-transform duration-500";
+    classes += 'new-node transition-transform duration-500';
   }
 
   return classes;
@@ -63,14 +63,14 @@ const DLLPush = () => {
     <div>
       <div className="flex items-center justify-center">
         <ol className="mr-16 text-left">
-          <h1 className="text-blue-800 text-2xl mb-6 font-bold pl-2">PUSH</h1>
+          <h1 className="text-blue-800 text-2xl mb-6 font-bold">PUSH</h1>
           {instructions.map((instruction, idx) => (
             <li
               key={instruction}
               className={`text-2xl leading-10 ${
                 instruction === (instructionsMap[animationStep] as string)
-                  ? "text-slate-800"
-                  : "text-slate-400"
+                  ? 'text-slate-800'
+                  : 'text-slate-400'
               }`}
             >
               {idx + 1}. {instruction}
@@ -137,10 +137,10 @@ const DLLPush = () => {
               onClick={handleClickNextStep}
             >
               {animationStep === AnimationStep.NotStarted
-                ? "step by step"
+                ? 'step by step'
                 : animationStep === AnimationStep.ConnectNewTailToOld
-                ? "reset"
-                : "next step"}
+                ? 'reset'
+                : 'next step'}
             </button>
           </div>
         </div>

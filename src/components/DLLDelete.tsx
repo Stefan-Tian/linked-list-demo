@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react";
-import useAnimationProcess from "../hooks/useAnimationProcess";
-import DLLNode from "./DLLNode";
+import { useState, useEffect } from 'react';
+import useAnimationProcess from '../hooks/useAnimationProcess';
+import DLLNode from './DLLNode';
 
 enum AnimationStep {
   NotStarted = -1,
@@ -15,15 +15,15 @@ enum AnimationStep {
 const animationDurations = [500, 1000, 600, 600, 600, 600, 3000];
 
 const instructionsMap: Record<number, string> = {
-  [AnimationStep.TraverseToIndexToDelete]: "Traverse to input index",
-  [AnimationStep.GetPrevNode]: "Get previous node from current node",
-  [AnimationStep.GetNextNode]: "Get next node from current node",
+  [AnimationStep.TraverseToIndexToDelete]: 'Traverse to input index',
+  [AnimationStep.GetPrevNode]: 'Get previous node from current node',
+  [AnimationStep.GetNextNode]: 'Get next node from current node',
   [AnimationStep.UpdateNextOfPrevNodeToNextNode]:
-    "Update next pointer of previous node to next node",
+    'Update next pointer of previous node to next node',
   [AnimationStep.UpdatePrevOfNextNodeToPrevNode]:
-    "Update prev pointer of next node to previous node",
+    'Update prev pointer of next node to previous node',
   [AnimationStep.SetPrevAndNextOfNodeToDeleteToNull]:
-    "Set both prev/next pointers of current node to null",
+    'Set both prev/next pointers of current node to null',
 };
 
 const instructions = Object.values(instructionsMap);
@@ -62,7 +62,7 @@ const DLLDelete = () => {
     <div>
       <div className="flex items-center justify-center">
         <ol className="mr-16 text-left">
-          <h1 className="text-blue-800 text-2xl mb-6 font-bold pl-2">
+          <h1 className="text-blue-800 text-2xl mb-6 font-bold">
             DELETE - index 2
           </h1>
           {instructions.map((instruction, idx) => (
@@ -70,8 +70,8 @@ const DLLDelete = () => {
               key={instruction}
               className={`text-2xl leading-10 ${
                 instruction === (instructionsMap[animationStep] as string)
-                  ? "text-slate-800"
-                  : "text-slate-400"
+                  ? 'text-slate-800'
+                  : 'text-slate-400'
               }`}
             >
               {idx + 1}. {instruction}
@@ -150,11 +150,11 @@ const DLLDelete = () => {
               onClick={handleClickNextStep}
             >
               {animationStep === AnimationStep.NotStarted
-                ? "step by step"
+                ? 'step by step'
                 : animationStep ===
                   AnimationStep.SetPrevAndNextOfNodeToDeleteToNull
-                ? "reset"
-                : "next step"}
+                ? 'reset'
+                : 'next step'}
             </button>
           </div>
         </div>
