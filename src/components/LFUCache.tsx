@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import useAnimationProcess from '../hooks/useAnimationProcess';
 import DLLNode from './DLLNode';
 
@@ -59,7 +59,7 @@ const nList: Node[] = [
 
 const fList = [[], [1], [2, 3, 4], [5]];
 const LFUCache = () => {
-  const { animationStep, startAnimationProcess, setAnimationStep } =
+  const { animationStep, setAnimationStep } =
     useAnimationProcess(animationDurations);
   const [nodeList, setNodeList] = useState(nList);
   const [freqList, setFreqList] = useState(fList);
